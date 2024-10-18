@@ -1,0 +1,36 @@
+<!-- main/templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт-визитка</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Подключите ваш файл стилей -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ personal_info.first_name }} {{ personal_info.last_name }}</h1>
+            <img src="{{ personal_info.profile_picture.url }}" alt="Profile Picture">
+        </header>
+        <section class="biography">
+            <h2>О себе</h2>
+            <p>{{ personal_info.biography }}</p>
+        </section>
+        <section class="hobbies">
+            <h2>Мои хобби</h2>
+            <div class="hobby-list">
+                {% for hobby in hobbies %}
+                    <div class="hobby">
+                        <img src="{{ hobby.image.url }}" alt="{{ hobby.title }}">
+                        <h3>{{ hobby.title }}</h3>
+                        <p>{{ hobby.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body>
+</html>
